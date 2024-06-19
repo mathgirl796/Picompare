@@ -16,7 +16,7 @@ class PicCompareMethods(QThread):
     _prefix = '_method_'
     compute_finished = pyqtSignal(list)
 
-    def __init__(self, parent: QObject | None = ...) -> None:
+    def __init__(self) -> None:
         super(PicCompareMethods, self).__init__()
 
     @staticmethod
@@ -62,7 +62,7 @@ class PicCompareMethods(QThread):
             # 读取成功
             self.compute_finished.emit([{'status': f'computing "{file_path_1}" with "{file_path_2}"'}, {}, {}])
             try:
-                score = structural_similarity(im1, im2, multichannel=True)
+                score = structural_similarity(im1, im2, channel_axis=2)
                 self.compute_finished.emit([{'ssim': score}, {}, {}])
             except:
                 self.compute_finished.emit([{'error': traceback.format_exc()}, {}, {}])

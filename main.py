@@ -51,7 +51,7 @@ class GraphicsView(QWidget):
             self.new_file_selected.emit(self.file_path)
             self.set_image_and_filepath()
     
-    def resizeEvent(self, event: QResizeEvent | None):
+    def resizeEvent(self, event: QResizeEvent):
         self.set_image_and_filepath(set_filepath=False)   
 
     def mouseReleaseEvent(self, a0: QMouseEvent) -> None:
